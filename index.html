@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="cs" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>hledampraci — připravujeme práci podle vás</title>
+  <meta name="description" content="hledampraci je ve vývoji. Připravujeme místo, kde najdete pracovní nabídky podle svých zkušeností, představ a toho, co je pro vás důležité.">
+  <meta name="theme-color" content="#DCDDF6">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:title" content="hledampraci — už na tom pracujeme">
+  <meta property="og:description" content="Práce, která vám sedí. Připravujeme nový způsob, jak ji najít.">
+  <!-- The original pracepodle.me favicon, embedded so this page travels alone. -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%235B45EB'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='white' stroke-opacity='.32' stroke-width='3.2'/%3E%3Cpath d='M16 9a7 7 0 1 1-7 7' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <!-- Same display and body fonts as the project; system fallbacks work offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+  <style>
+    /* A standalone subset of v8/styles/main.css's design tokens. */
+    :root {
+      color-scheme: dark;
+      --bg: #08090F;
+      --panel: #11131D;
+      --ink: #F4F4F9;
+      --ink-soft: #A7A9BA;
+      --ink-faint: #838698;
+      --accent: #7C6CF8;
+      --accent-2: #ABA2FF;
+      --accent-rgb: 124,108,248;
+      --accent-soft-rgb: 171,162,255;
+      --coral-rgb: 249,112,77;
+      --depth-rgb: 0,0,0;
+      --warm: #FF8F6E;
+      --white: #FFFFFF;
+      --line: rgba(var(--accent-soft-rgb),.10);
+      --line-strong: rgba(var(--accent-soft-rgb),.19);
+      --accent-tint: rgba(var(--accent-rgb),.15);
+      --control-bg: rgba(255,255,255,.04);
+      --brand-grad: linear-gradient(100deg, #AFA4FF 0%, #8B5CF6 45%, #FF8F6E 100%);
+      --btn-grad: linear-gradient(135deg, #6F5DF7, #5B45EB 50%, #7C3AED);
+      --shadow-1: 0 1px 2px rgba(var(--depth-rgb),.4), 0 6px 16px -8px rgba(var(--depth-rgb),.55);
+      --shadow-2: 0 2px 6px rgba(var(--depth-rgb),.4), 0 14px 28px -12px rgba(var(--depth-rgb),.55);
+      --field-alpha: .38;
+      --ribbon-alpha: .18;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-display: 'Bricolage Grotesque', 'Inter', -apple-system, sans-serif;
+      --fs-xs: 12px;
+      --fs-sm: 13px;
+      --fs-base: 14px;
+      --fs-md: 16px;
+      --fs-lg: 19px;
+      --fs-xl: 23px;
+      --fs-3xl: 34px;
+      --fs-4xl: 44px;
+      --fs-5xl: 56px;
+      --fs-6xl: 72px;
+      --lh-tight: 1.12;
+      --lh-normal: 1.5;
+      --lh-relaxed: 1.65;
+      --ls-display: -.012em;
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 20px;
+      --sp-6: 24px;
+      --sp-7: 32px;
+      --sp-8: 40px;
+      --sp-9: 48px;
+      --sp-10: 64px;
+      --sp-11: 80px;
+      --sp-12: 96px;
+      --radius-s: 10px;
+      --radius-m: 14px;
+      --radius-l: 20px;
+      --radius-xl: 26px;
+      --radius-pill: 999px;
+      --ring-color: rgba(var(--accent-soft-rgb),.6);
+      --dur-2: .2s;
+      --dur-4: .6s;
+      --dur-drift: 13s;
+      --dur-orbit: 24s;
+      --ease-out: cubic-bezier(.16,1,.3,1);
+      --ease-sine: cubic-bezier(.37,0,.63,1);
+      --wrap-max: 1180px;
+      /* Page-specific layout tokens: editorial copy and decorative signal field. */
+      --copy-max: 560px;
+      --field-size: 520px;
+      --mark-size: 112px;
+      --ribbon-width: 1300px;
+      --ribbon-height: 320px;
+    }
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg: #DCDDF6;
+      --panel: #FFFFFF;
+      --ink: #0D0A26;
+      --ink-soft: #393959;
+      --ink-faint: #4E4F6E;
+      --accent: #5B45EB;
+      --accent-2: #4B34CF;
+      --accent-rgb: 91,69,235;
+      --accent-soft-rgb: 91,69,235;
+      --coral-rgb: 229,85,47;
+      --depth-rgb: 34,24,105;
+      --warm: #E5552F;
+      --line: rgba(var(--depth-rgb),.16);
+      --line-strong: rgba(var(--depth-rgb),.26);
+      --accent-tint: rgba(var(--accent-rgb),.12);
+      --control-bg: #FFFFFF;
+      --brand-grad: linear-gradient(100deg, #5B45EB 0%, #7C3AED 48%, #E5552F 100%);
+      --btn-grad: linear-gradient(135deg, #5B45EB, #4B34CF 50%, #6D28D9);
+      --shadow-1: 0 1px 2px rgba(var(--depth-rgb),.1), 0 16px 32px -14px rgba(var(--depth-rgb),.34);
+      --shadow-2: 0 2px 4px rgba(var(--depth-rgb),.1), 0 14px 28px -10px rgba(var(--depth-rgb),.22);
+      --field-alpha: .52;
+      --ribbon-alpha: .23;
+      --ring-color: rgba(var(--accent-rgb),.5);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: var(--fs-base); line-height: var(--lh-normal); }
+    button { font: inherit; }
+    svg { display: block; }
+    h1, h2, p { margin: 0; }
+    h1, h2 { font-family: var(--font-display); }
+    :focus-visible { outline: 3px solid var(--ring-color); outline-offset: 4px; }
+    .skip-link { position: absolute; top: var(--sp-4); left: var(--sp-4); translate: 0 -200%; padding: var(--sp-3); background: var(--panel); color: var(--ink); z-index: 10; border-radius: var(--radius-s); }
+    .skip-link:focus { translate: 0; }
+    .page { position: relative; min-height: 100svh; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; }
+    .ambient { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .ribbon { position: absolute; top: 26%; left: 52%; width: var(--ribbon-width); height: var(--ribbon-height); translate: -50% -50%; rotate: -32deg; background: linear-gradient(180deg, transparent, rgba(var(--accent-rgb),.15) 35%, rgba(var(--accent-rgb),var(--ribbon-alpha)) 50%, transparent 72%); mask-image: linear-gradient(90deg, transparent, black 25%, black 75%, transparent); animation: drift var(--dur-drift) var(--ease-sine) infinite alternate; }
+    .ribbon::after { content: ''; position: absolute; inset: 45% 0 auto; height: 1px; background: linear-gradient(90deg, transparent, rgba(var(--accent-soft-rgb),.4), transparent); }
+    .ribbon--warm { top: 57%; left: 80%; rotate: 32deg; background: linear-gradient(180deg, transparent, rgba(var(--coral-rgb),var(--ribbon-alpha)) 48%, transparent 70%); animation-delay: -7s; animation-duration: 17s; }
+    .ribbon--warm::after { background: linear-gradient(90deg, transparent, rgba(var(--coral-rgb),.25), transparent); }
+    .wrap { width: min(100% - var(--sp-10), var(--wrap-max)); margin-inline: auto; }
+    .header { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); padding-block: var(--sp-7); }
+    .brand { display: inline-flex; align-items: center; gap: var(--sp-3); font: 800 var(--fs-xl)/1 var(--font-display); letter-spacing: var(--ls-display); }
+    .brand-icon { width: var(--sp-7); height: var(--sp-7); flex: none; border-radius: var(--radius-s); box-shadow: var(--shadow-1); }
+    .brand-accent { color: var(--accent-2); }
+    .theme-button { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2); min-height: var(--sp-9); padding: var(--sp-3) var(--sp-4); border: 1px solid var(--line-strong); border-radius: var(--radius-pill); background: var(--control-bg); color: var(--ink-soft); cursor: pointer; box-shadow: var(--shadow-1); transition: border-color var(--dur-2), box-shadow var(--dur-2); }
+    .theme-button::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--accent-tint); scale: 0; border-radius: inherit; transition: scale var(--dur-4) var(--ease-out); }
+    .theme-button:hover::before { scale: 1; }
+    .theme-button:hover { border-color: var(--accent); box-shadow: var(--shadow-2); }
+    .theme-button[hidden] { display: none; }
+    .theme-button .sun { display: none; }
+    :root:not([data-theme="light"]) .theme-button .moon { display: none; }
+    :root:not([data-theme="light"]) .theme-button .sun { display: block; }
+    main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-block: var(--sp-8) var(--sp-10); }
+    .hero { display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: var(--sp-7); padding-block: var(--sp-8) var(--sp-10); }
+    .copy { max-width: var(--copy-max); position: relative; z-index: 1; }
+    .status { display: inline-flex; align-items: center; gap: var(--sp-2); padding: var(--sp-2) var(--sp-3); border: 1px solid var(--line-strong); border-radius: var(--radius-pill); background: var(--accent-tint); color: var(--accent-2); font-size: var(--fs-xs); font-weight: 600; }
+    .status::before { content: ''; width: var(--sp-2); height: var(--sp-2); border-radius: 50%; background: var(--warm); }
+    h1 { margin-top: var(--sp-6); font-size: clamp(var(--fs-4xl), 5.8vw, var(--fs-6xl)); line-height: var(--lh-tight); font-weight: 800; letter-spacing: var(--ls-display); text-wrap: balance; }
+    h1 span { display: block; background: var(--brand-grad); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .lead { margin-top: var(--sp-6); max-width: var(--copy-max); color: var(--ink-soft); font-size: var(--fs-lg); line-height: var(--lh-relaxed); text-wrap: pretty; }
+    .return-note { display: flex; align-items: flex-start; gap: var(--sp-3); margin-top: var(--sp-7); font-size: var(--fs-sm); color: var(--ink-faint); }
+    .return-note svg { flex: none; margin-top: 1px; color: var(--accent-2); }
+    .field { width: min(100%, var(--field-size)); aspect-ratio: 1; position: relative; justify-self: center; }
+    .field-rings, .orbit { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .field-rings { color: var(--accent-2); opacity: var(--field-alpha); }
+    .orbit { color: var(--warm); animation: orbit var(--dur-orbit) linear infinite; }
+    .core { position: absolute; top: 50%; left: 50%; translate: -50% -50%; width: var(--mark-size); aspect-ratio: 1; border-radius: var(--radius-xl); box-shadow: var(--shadow-2), 0 0 var(--sp-12) rgba(var(--accent-rgb),.25); }
+    .field-label { position: absolute; display: inline-flex; align-items: center; gap: var(--sp-2); padding: var(--sp-3) var(--sp-4); background: var(--panel); border: 1px solid var(--line-strong); border-radius: var(--radius-pill); color: var(--ink-soft); font-size: var(--fs-xs); font-weight: 500; box-shadow: var(--shadow-1); }
+    .field-label svg { color: var(--accent-2); flex: none; }
+    .field-label--one { top: 16%; left: 6%; }
+    .field-label--two { right: 0; top: 48%; }
+    .field-label--three { left: 14%; bottom: 13%; }
+    .section-label { margin-bottom: var(--sp-4); color: var(--ink-faint); font-size: var(--fs-xs); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+    .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-4); }
+    .feature { padding: var(--sp-6); border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--panel); box-shadow: var(--shadow-1); }
+    .feature-heading { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3); }
+    .feature-icon { display: grid; place-items: center; width: var(--sp-8); height: var(--sp-8); border-radius: var(--radius-m); background: var(--accent-tint); color: var(--accent-2); flex: none; }
+    h2 { font-size: var(--fs-lg); line-height: var(--lh-normal); font-weight: 700; letter-spacing: var(--ls-display); }
+    .feature p { color: var(--ink-soft); line-height: var(--lh-relaxed); }
+    footer { display: flex; justify-content: space-between; gap: var(--sp-4); padding-block: var(--sp-6); border-top: 1px solid var(--line); color: var(--ink-faint); font-size: var(--fs-xs); }
+    footer span:last-child { text-align: right; }
+    @keyframes drift { from { translate: -55% -52%; scale: .95; } to { translate: -43% -43%; scale: 1.1; } }
+    @keyframes orbit { to { rotate: 360deg; } }
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1.2fr 1fr; gap: var(--sp-4); }
+      h1 { font-size: var(--fs-5xl); }
+      .lead { font-size: var(--fs-md); }
+      .field-label { padding: var(--sp-2) var(--sp-3); }
+      .field-label--two { right: -3%; }
+      .feature { padding: var(--sp-5); }
+      .feature-heading { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; padding-block: var(--sp-6) var(--sp-8); gap: var(--sp-4); }
+      .copy { max-width: 100%; }
+      .field { width: min(100%, 400px); }
+      .field-label--two { right: 0; }
+      .features { grid-template-columns: 1fr; }
+      .feature-heading { flex-direction: row; }
+      main { padding-top: var(--sp-4); }
+    }
+    @media (max-width: 560px) {
+      :root { --mark-size: 96px; }
+      .wrap { width: calc(100% - var(--sp-8)); }
+      .header { padding-block: var(--sp-6); }
+      .brand { font-size: var(--fs-lg); gap: var(--sp-2); }
+      .theme-button { width: var(--sp-9); padding: var(--sp-3); }
+      .theme-button span { display: none; }
+      h1 { font-size: clamp(var(--fs-3xl), 10vw, var(--fs-5xl)); }
+      .lead { margin-top: var(--sp-5); }
+      .return-note { margin-top: var(--sp-6); }
+      .field-label--one { left: 0; }
+      .field-label--three { left: 5%; }
+      footer { flex-direction: column; gap: var(--sp-2); }
+      footer span:last-child { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+    .is-paused .ribbon, .is-paused .orbit { animation-play-state: paused; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Přejít na obsah</a>
+  <div class="page">
+    <div class="ambient" aria-hidden="true"><div class="ribbon"></div><div class="ribbon ribbon--warm"></div></div>
+    <header class="header wrap">
+      <div class="brand" aria-label="hledampraci">
+        <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#5B45EB"/><circle cx="16" cy="16" r="7" fill="none" stroke="white" stroke-opacity=".32" stroke-width="3.2"/><path d="M16 9a7 7 0 1 1-7 7" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round"/></svg>
+        <span>hledam<span class="brand-accent">praci</span></span>
+      </div>
+      <button class="theme-button" type="button" aria-label="Přepnout na tmavý vzhled" hidden>
+        <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg>
+        <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"/></svg>
+        <span>Tmavý vzhled</span>
+      </button>
+    </header>
+    <main id="main" class="wrap" tabindex="-1">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="copy">
+          <p class="status">Právě ve vývoji</p>
+          <h1 id="hero-title">Práce, která<br>vám sedí.<span>Už na tom<br>pracujeme.</span></h1>
+          <p class="lead">hledampraci právě vzniká. Připravujeme místo, kde pracovní nabídky dávají smysl podle toho, co umíte, co hledáte a na čem vám záleží.</p>
+          <p class="return-note">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Na spuštění ještě pracujeme. Zastavte se tu zase.
+          </p>
+        </div>
+        <div class="field" aria-hidden="true">
+          <svg class="field-rings" viewBox="0 0 520 520" fill="none" stroke="currentColor"><circle cx="260" cy="260" r="72"/><circle cx="260" cy="260" r="112"/><circle cx="260" cy="260" r="152" stroke-width="1.5"/><circle cx="260" cy="260" r="192"/><circle cx="260" cy="260" r="232"/><path d="M28 260h464M260 28v464" stroke-dasharray="2 10" opacity=".4"/></svg>
+          <svg class="orbit" viewBox="0 0 520 520" fill="none"><path d="M260 68a192 192 0 0 1 166 96" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="426" cy="164" r="5" fill="currentColor"/></svg>
+          <svg class="core" viewBox="0 0 32 32"><rect width="32" height="32" rx="7.5" fill="#5B45EB"/><circle cx="16" cy="16" r="7" fill="none" stroke="white" stroke-opacity=".32" stroke-width="3.2"/><path d="M16 9a7 7 0 1 1-7 7" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round"/></svg>
+          <span class="field-label field-label--one"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="3"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12a20 20 0 0 0 18 0M12 11v4"/></svg>Vaše zkušenosti</span>
+          <span class="field-label field-label--two"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z"/></svg>Vaše představy</span>
+          <span class="field-label field-label--three"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>Vaše další práce</span>
+        </div>
+      </section>
+      <section aria-label="Co pro vás chystáme">
+        <p class="section-label">Co pro vás chystáme</p>
+        <div class="features">
+          <article class="feature">
+            <div class="feature-heading"><span class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg></span><h2>Nabídky podle vás</h2></div>
+            <p>Praxe, plat, dojezd i směny. Hledání, které bere v úvahu to, co je pro vás důležité.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-heading"><span class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span><h2>Shoda s vysvětlením</h2></div>
+            <p>U každé nabídky uvidíte, proč vám může sedět a na co si dát pozor. Rozhodnutí bude na vás.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-heading"><span class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="m8 9 1.5 1.5L12 8m2 2h2M8 15h8"/></svg></span><h2>Vše na jednom místě</h2></div>
+            <p>Oblíbené nabídky, přehled přihlášek i příprava na pohovor. Od prvního hledání po další krok.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="wrap"><span>hledampraci · Práce podle toho, co umíte a co chcete.</span><span>Děkujeme za trpělivost. Těšíme se na vás.</span></footer>
+  </div>
+  <script>
+    // No account, storage or signup: this standalone page only switches its appearance.
+    (() => {
+      const root = document.documentElement;
+      const button = document.querySelector('.theme-button');
+      const label = button.querySelector('span');
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+      button.hidden = false;
+      button.addEventListener('click', () => {
+        const light = root.dataset.theme !== 'light';
+        if (light) root.dataset.theme = 'light';
+        else delete root.dataset.theme;
+        const next = light ? 'tmavý' : 'světlý';
+        button.setAttribute('aria-label', `Přepnout na ${next} vzhled`);
+        label.textContent = light ? 'Tmavý vzhled' : 'Světlý vzhled';
+        themeColor.content = getComputedStyle(root).getPropertyValue('--bg').trim();
+      });
+      document.addEventListener('visibilitychange', () => {
+        root.classList.toggle('is-paused', document.hidden);
+      });
+    })();
+  </script>
+</body>
+</html>
